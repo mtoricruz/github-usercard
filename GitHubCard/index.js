@@ -1,4 +1,4 @@
-// import axios from 'axios'
+import axios from 'axios'
 
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
@@ -7,13 +7,13 @@
 
 const enter = document.querySelector('.cards')
 
-// axios.get('https://api.github.com/users/mtoricruz')
-//   .then(response => {
-//     enter.appendChild(gitCard(response.data));
-//   })
-//   .catch(error => {
-//     console.log(error)
-//   })
+axios.get('https://api.github.com/users/mtoricruz')
+  .then(response => {
+    enter.appendChild(gitCard(response.data));
+  })
+  .catch(error => {
+    console.log(error)
+  })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -32,11 +32,16 @@ const enter = document.querySelector('.cards')
           at the bottom of the page. Get at least 5 different Github usernames and add them as
           Individual strings to the friendsArray below.
           
-          Using that array, iterate over it, requesting data for each user, creating a new card for each
-          user, and adding that card to the DOM.
+          Using that array, iterate over it, requesting data for each user, creating a new card for each user, and adding that card to the DOM.
 */
 
-const followersArray = ['https://api.github.com/users/Owlspec3086', 'https://api.github.com/users/JackBlumenthal', 'https://api.github.com/users/bobbygondola', 'https://api.github.com/users/e94canales', 'https://api.github.com/users/nicholas-myers'];
+const followersArray = ['Owlspec3086', 'JackBlumenthal', 'bobbygondola', 'e94canales', 'nicholas-myers'];
+
+followersArray.forEach(follower => {
+  const followerCard = gitCard(follower.data)
+  enter.appendChild(followerCard)
+})
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -56,7 +61,7 @@ const followersArray = ['https://api.github.com/users/Owlspec3086', 'https://api
     </div> 
 */
 
-function gitCard(object){
+function gitCard(object) {
   // instantiate elements
   const cardDiv = document.createElement('div')
   const cardImg = document.createElement('img')
@@ -91,7 +96,8 @@ function gitCard(object){
   // set text content for our card
   cardName.textContent = `${object.name}`
   cardUserName.textContent = `${object.login}`
-  cardLocation.textContent = `${object.location}`
+  cardLocation.textContent = `Location: ${object.location}`
+  cardProfile.textContent = `Profile: ${object.url}`
   cardFollowers.textContent = `Followers: ${object.followers}`
   cardFollowing.textContent = `Following: ${object.following}`
   cardBio.textContent = `${object.bio}`
@@ -99,7 +105,7 @@ function gitCard(object){
   // set image url for user
   cardImg.src = `${object.avatar_url}`
 
-  // set profile link for us
+  // set profile link for user
   cardProfileLink.href = `${object.url}`
 
   return cardDiv
@@ -109,7 +115,7 @@ gitCard(axios)
 
 
 
-/* List of LS Instructors Github username's: 
+/* List of LS Instructors Github username's:
   tetondan
   dustinmyers
   justsml
