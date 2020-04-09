@@ -5,13 +5,15 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/mtoricruz')
-  .then(response => {
-    
-  })
-  .catch(error => {
+const enter = document.querySelector('.cards')
 
-  })
+// axios.get('https://api.github.com/users/mtoricruz')
+//   .then(response => {
+//     enter.appendChild(gitCard(response.data));
+//   })
+//   .catch(error => {
+//     console.log(error)
+//   })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -34,7 +36,7 @@ axios.get('https://api.github.com/users/mtoricruz')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['https://api.github.com/users/Owlspec3086', 'https://api.github.com/users/JackBlumenthal', 'https://api.github.com/users/bobbygondola', 'https://api.github.com/users/e94canales', 'https://api.github.com/users/nicholas-myers'];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -102,7 +104,7 @@ function gitCard(object){
 
   return cardDiv
 }
-
+gitCard(axios)
 
 
 
