@@ -38,8 +38,17 @@ axios.get('https://api.github.com/users/mtoricruz')
 const followersArray = ['Owlspec3086', 'JackBlumenthal', 'bobbygondola', 'e94canales', 'nicholas-myers'];
 
 followersArray.forEach(follower => {
-  const followerCard = gitCard(follower.data)
-  enter.appendChild(followerCard)
+  // const followerCard = gitCard(follower)
+  axios.get(`https://api.github.com/users/${follower}`)
+    .then(response => {
+      console.log(response)
+      const user = response.data
+      enter.appendChild(gitCard(user))
+    })
+    .catch(error => {
+      console.log(error)
+    })
+ 
 })
 
 
@@ -111,7 +120,7 @@ function gitCard(object) {
   return cardDiv
 }
 gitCard(axios)
-
+gitCard(followersArray)
 
 
 

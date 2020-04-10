@@ -1921,8 +1921,14 @@ _axios.default.get('https://api.github.com/users/mtoricruz').then(function (resp
 
 var followersArray = ['Owlspec3086', 'JackBlumenthal', 'bobbygondola', 'e94canales', 'nicholas-myers'];
 followersArray.forEach(function (follower) {
-  var followerCard = gitCard(follower.data);
-  enter.appendChild(followerCard);
+  // const followerCard = gitCard(follower)
+  _axios.default.get("https://api.github.com/users/".concat(follower)).then(function (response) {
+    console.log(response);
+    var user = response.data;
+    enter.appendChild(gitCard(user));
+  }).catch(function (error) {
+    console.log(error);
+  });
 });
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -1987,6 +1993,7 @@ function gitCard(object) {
 }
 
 gitCard(_axios.default);
+gitCard(followersArray);
 /* List of LS Instructors Github username's:
   tetondan
   dustinmyers
